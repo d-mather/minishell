@@ -6,11 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 16:54:21 by dmather           #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2016/09/01 14:25:34 by dmather          ###   ########.fr       */
-=======
-/*   Updated: 2016/08/27 12:02:06 by dmather          ###   ########.fr       */
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +16,7 @@
 # include "libft.h"
 
 # define CONT 1
-<<<<<<< HEAD
 # define UNSETENV_FIND (ft_strncmp(e->environ[i], e->name, ft_strlen(e->name)))
-=======
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
 
 struct termios	saved_attributes;
 
@@ -41,10 +34,7 @@ typedef struct		s_env
 	char			**environ;
 	int				ie;
 	char			*execute;
-<<<<<<< HEAD
 	char			*name;
-=======
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
 }					t_env;
 
 /*
