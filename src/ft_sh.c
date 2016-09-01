@@ -6,11 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2016/09/01 14:34:05 by dmather          ###   ########.fr       */
-=======
-/*   Updated: 2016/08/27 19:49:37 by dmather          ###   ########.fr       */
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
+/*   Updated: 2016/09/01 17:38:32 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +64,6 @@ int		get_input(t_env *e)
 }
 
 /*
-<<<<<<< HEAD
-**void	read_it(t_env *e)
-**{
-**	char	line[1];
-**	int		file;
-**	int		i;
-**
-**	file = 1;
-**	i = 0;
-**	e->line = ft_memalloc(1000);
-**	while((file = read(0, &line, 4)) > 0 && line[i] != '\n')
-**	{
-**		e->line[i] = line[i];
-**		i++;
-**	}
-**}
-=======
 void	read_it(t_env *e)
 {
 	char	line[1];
@@ -100,7 +79,6 @@ void	read_it(t_env *e)
 		i++;
 	}
 }
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
 */
 
 int		get_command(t_env *e)
@@ -149,10 +127,6 @@ void	save_env(char **envp, t_env *e)
 		e->environ[i] = envp[i];
 		i++;
 	}
-<<<<<<< HEAD
-=======
-//	e->environ[e->ie] = NULL;
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
 }
 
 int		main(int argc, char *argv[], char **envp)

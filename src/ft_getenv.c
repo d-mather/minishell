@@ -6,11 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 16:15:32 by dmather           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2016/09/01 14:27:38 by dmather          ###   ########.fr       */
-=======
-/*   Updated: 2016/08/27 20:46:27 by dmather          ###   ########.fr       */
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
+/*   Updated: 2016/09/01 17:38:32 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,22 +104,12 @@ int		ft_setenv(t_env *e)
 int		ft_unsetenv(t_env *e)
 {
 	int		i;
-<<<<<<< HEAD
-=======
-	char	*name;
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
 
 	i = 0;
 	if (e->input[1])
 	{
-<<<<<<< HEAD
 		e->name = ft_strjoin(e->input[1], "=");
 		while (i < e->ie && UNSETENV_FIND)
-=======
-		name = ft_strjoin(e->input[1], "=");
-		while (i < e->ie && ft_strncmp(e->environ[i], name,
-														ft_strlen(name)))
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
 			i++;
 		if (e->environ[i] == NULL)
 		{
@@ -140,10 +126,6 @@ int		ft_unsetenv(t_env *e)
 	}
 	else
 		ft_putstr(C_RED"Please tell me what you want to unset.\n"C_RESET);
-<<<<<<< HEAD
 	ft_strdel(&e->name);
-=======
-	ft_strdel(&name);
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
 	return (CONT);
 }

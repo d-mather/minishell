@@ -6,11 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:20:40 by dmather           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2016/09/01 14:23:30 by dmather          ###   ########.fr       */
-=======
-/*   Updated: 2016/08/27 17:04:35 by dmather          ###   ########.fr       */
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
+/*   Updated: 2016/09/01 17:38:52 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +35,7 @@ void	init(t_env *e)
 	e->full_paths = NULL;
 	e->line = NULL;
 	e->execute = NULL;
-<<<<<<< HEAD
 	e->name = NULL;
-=======
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
 }
 
 void	prompt(t_env *e)
