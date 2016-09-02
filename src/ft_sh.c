@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/01 15:53:17 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/02 14:54:45 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,21 @@ int		get_input(t_env *e)
 }
 
 /*
-**void	read_it(t_env *e)
-**{
-**	char	line[1];
-**	int		file;
-**	int		i;
-**
-**	file = 1;
-**	i = 0;
-**	e->line = ft_memalloc(1000);
-**	while((file = read(0, &line, 4)) > 0 && line[i] != '\n')
-**	{
-**		e->line[i] = line[i];
-**		i++;
-**	}
-**}
+void	read_it(t_env *e)
+{
+	char	line[1];
+	int		file;
+	int		i;
+
+	file = 1;
+	i = 0;
+	e->line = ft_memalloc(1000);
+	while((file = read(0, &line, 4)) > 0 && line[i] != '\n')
+	{
+		e->line[i] = line[i];
+		i++;
+	}
+}
 */
 
 int		get_command(t_env *e)

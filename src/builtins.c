@@ -6,11 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2016/09/01 13:41:28 by dmather          ###   ########.fr       */
-=======
-/*   Updated: 2016/08/31 13:14:07 by dmather          ###   ########.fr       */
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
+/*   Updated: 2016/09/02 14:54:45 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +46,12 @@ int		ft_echo(t_env *e)
 	env = NULL;
 	if (e->n_input <= 1)
 		ft_putstr("\n");
-<<<<<<< HEAD
 	else if (e->input[1][0] == '$' ||
 							(e->input[1][0] == '\"' && e->input[1][1] == '$'))
 	{
 		env = ft_getenv(ft_trim_qu(ft_strchr(e->input[1], '$')) + 1,
 																	e->environ);
 		if (ft_strcmp(env, ft_strchr(e->input[1], '$')) == 0)
-=======
-	else if (e->input[1][0] == '$')// || (e->input[1][0] == '\"' && e->input[1][1] == '$'))
-	{
-		env = ft_getenv(ft_strchr(e->input[1], '$') + 1, e->environ);
-		if (env == ft_strchr(e->input[1], '$'))//ft_getenv(ft_strchr(e->input[1], '$') + 1, e->environ))
->>>>>>> 055a3bf3d38ffa79f11bcbd199d95b173beac010
 			ft_putstr(C_RED"Invalid environment."C_RESET);
 		else
 			ft_putstr(env);
