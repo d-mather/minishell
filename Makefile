@@ -6,7 +6,7 @@
 #    By: dmather <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/05 14:51:29 by dmather           #+#    #+#              #
-#    Updated: 2016/09/03 08:21:46 by dmather          ###   ########.fr        #
+#    Updated: 2016/09/03 22:03:09 by dmather          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CR			= \033[31m
 CB			= \033[34m
 CP			= \033[38;5;128m
 CY			= \033[33m
-FLAGS		= -Wall -Wextra -Werror -ltermcap -g3
+FLAGS		= -Wall -Wextra -Werror -ltermcap -g3# -ltermlib
 LIBFT		= -L libft -lft
 INCLUDES	= -I include -I libft
 

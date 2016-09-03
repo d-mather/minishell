@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 16:54:21 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/03 11:12:31 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/03 22:12:03 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct		s_term
 int					run_commands(t_env *e);
 int					get_input(t_env *e);
 int					get_command(t_env *e);
+char				*read_it(void);
 void				save_env(char **envp, t_env *e);
 
 /*
@@ -88,5 +89,7 @@ int					ft_issp(char *o);
 */
 void				reset_input_mode(void);
 void				set_input_mode(void);
+int					tputs_putchar(int c);
+void				line_eddition(char *line);
 
 #endif

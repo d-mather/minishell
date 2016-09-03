@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/03 11:26:26 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/03 22:14:13 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,41 +63,6 @@ int		get_input(t_env *e)
 	return (CONT);
 }
 
-int     tputs_putchar(int c)
-{
-    write(1, &c, 1);
-    return (1);
-}
-
-void	line_eddition(char *line)
-{
-	if (!ft_strcmp(line, "^?"))
-		tputs(tgetstr("cl", NULL), 1, tputs_putchar);
-}
-
-char	*read_it(void)
-{
-	static size_t	pos = 4;
-	static ssize_t	eob = 4;
-	static char		buff[4];
-	char			*temp_line;
-
-	temp_line = ft_strnew(1);
-	while (buff[pos] != '\n' && eob > 0)
-	{
-		if ((ssize_t)pos == eob)
-			if (((pos = 0) == 0) &&
-								((eob = read(0, buff, 4)) == -1))
-				return (NULL);
-		if ((temp_line = sjoin(buff, &pos, eob, temp_line)) == NULL)
-			return (NULL);
-		line_eddition(temp_line);
-		ft_printf("|%s|\n", temp_line);
-	}
-	ft_bzero(buff, 4);
-	return (temp_line);
-}
-
 int		get_command(t_env *e)
 {
 	t_split_string	args;
@@ -124,6 +89,28 @@ int		get_command(t_env *e)
 	ft_free_tab(&args.strings, args.words);
 	ft_strdel(&e->line);
 	return (get_input(e));
+}
+
+char	*read_it(void)
+{
+	static size_t	pos = 4;
+	static ssize_t	eob = 4;
+	static char		buff[4];
+	char			*temp_line;
+
+	temp_line = ft_strnew(1);
+	while (buff[pos] != '\n' && eob > 0)
+	{
+		if ((ssize_t)pos == eob)
+			if (((pos = 0) == 0) &&
+								((eob = read(0, buff, 4)) == -1))
+				return (NULL);
+		if ((temp_line = sjoin(buff, &pos, eob, temp_line)) == NULL)
+			return (NULL);
+		line_eddition(temp_line);
+	}
+	ft_bzero(buff, 4);
+	return (temp_line);
 }
 
 void	save_env(char **envp, t_env *e)
