@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:20:40 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/02 14:54:45 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/03 11:13:30 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	cmd_nf(t_env *e)
 
 void	init(t_env *e)
 {
+	t_term t;
+
+	tgetent(t.term_buffer, getenv("TERM"));
 	e->n_cmds = 0;
 	e->cmds = NULL;
 	e->n_input = 0;

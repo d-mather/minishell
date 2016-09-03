@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 16:54:21 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/01 14:25:34 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/03 11:12:31 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ typedef struct		s_env
 	char			*execute;
 	char			*name;
 }					t_env;
+
+typedef struct		s_term
+{
+	char			*term_buffer;
+}					t_term;
 
 /*
 ** ft_sh.c

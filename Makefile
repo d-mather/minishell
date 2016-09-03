@@ -6,7 +6,7 @@
 #    By: dmather <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/05 14:51:29 by dmather           #+#    #+#              #
-#    Updated: 2016/08/27 16:45:44 by dmather          ###   ########.fr        #
+#    Updated: 2016/09/03 08:21:46 by dmather          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,10 @@ all: $(NAME)
 $(NAME):
 	@make -s -C libft all
 	@gcc $(FLAGS) $(INCLUDES) $(SRCS) $(LIBFT) -o $(NAME)
-	@echo "$(CR)Terminal Broken!$(NC)"
-	@sleep 2
-	@echo "Just Kidding ;)"
-	@sleep 1
+#	@echo "$(CR)Terminal Broken!$(NC)"
+#	@sleep 2
+#	@echo "Just Kidding ;)"
+#	@sleep 1
 	@echo "$(CB)$(NAME) ==> Made '$(NAME)'$(NC)"
 
 clean:
@@ -46,17 +46,17 @@ aclean: clean
 	@make -s -C libft fclean
 	@rm -f $(NAME)
 	@echo "$(CR)$(NAME) ==> Removed '$(NAME)'$(NC)"
-	@echo "$(CP)-*-*-*-*-* Time Remaining: 438 sec. *-*-*-*-*-"
-	@sleep 2
-	@echo "-*-*-*-*-* Time Remaining: 437 sec. *-*-*-*-*-"
-	@sleep 2
-	@echo "-*-*-*-*-* Time Remaining: 436 sec. *-*-*-*-*-"
-	@sleep 2
-	@echo "-*-*-*-*-* Time Remaining: 435 sec. *-*-*-*-*-"
-	@sleep 2
-	@echo "-*-*-*-*-* Time Remaining: 434 sec. *-*-*-*-*-"
-	@sleep 2
-	@echo "-*-*-*-*-* Time Remaining: 433 sec. *-*-*-*-*-"
+#	@echo "$(CP)-*-*-*-*-* Time Remaining: 438 sec. *-*-*-*-*-"
+#	@sleep 2
+#	@echo "-*-*-*-*-* Time Remaining: 437 sec. *-*-*-*-*-"
+#	@sleep 2
+#	@echo "-*-*-*-*-* Time Remaining: 436 sec. *-*-*-*-*-"
+#	@sleep 2
+#	@echo "-*-*-*-*-* Time Remaining: 435 sec. *-*-*-*-*-"
+#	@sleep 2
+#	@echo "-*-*-*-*-* Time Remaining: 434 sec. *-*-*-*-*-"
+#	@sleep 2
+#	@echo "-*-*-*-*-* Time Remaining: 433 sec. *-*-*-*-*-"
 
 fclean: clean
 	@make -s -C libft fclean

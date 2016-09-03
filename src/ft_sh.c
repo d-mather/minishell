@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/02 14:54:45 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/03 11:26:26 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,40 @@ int		get_input(t_env *e)
 	return (CONT);
 }
 
-/*
-void	read_it(t_env *e)
+int     tputs_putchar(int c)
 {
-	char	line[1];
-	int		file;
-	int		i;
-
-	file = 1;
-	i = 0;
-	e->line = ft_memalloc(1000);
-	while((file = read(0, &line, 4)) > 0 && line[i] != '\n')
-	{
-		e->line[i] = line[i];
-		i++;
-	}
+    write(1, &c, 1);
+    return (1);
 }
-*/
+
+void	line_eddition(char *line)
+{
+	if (!ft_strcmp(line, "^?"))
+		tputs(tgetstr("cl", NULL), 1, tputs_putchar);
+}
+
+char	*read_it(void)
+{
+	static size_t	pos = 4;
+	static ssize_t	eob = 4;
+	static char		buff[4];
+	char			*temp_line;
+
+	temp_line = ft_strnew(1);
+	while (buff[pos] != '\n' && eob > 0)
+	{
+		if ((ssize_t)pos == eob)
+			if (((pos = 0) == 0) &&
+								((eob = read(0, buff, 4)) == -1))
+				return (NULL);
+		if ((temp_line = sjoin(buff, &pos, eob, temp_line)) == NULL)
+			return (NULL);
+		line_eddition(temp_line);
+		ft_printf("|%s|\n", temp_line);
+	}
+	ft_bzero(buff, 4);
+	return (temp_line);
+}
 
 int		get_command(t_env *e)
 {
@@ -88,8 +105,8 @@ int		get_command(t_env *e)
 
 	prompt(e);
 	set_input_mode();
-//	read_it(e);
-	ft_gnl(0, &e->line);
+	e->line = read_it();
+//	ft_gnl(0, &e->line);
 	reset_input_mode();
 	tmp = ft_strtrim(e->line);
 	ft_strdel(&e->line);

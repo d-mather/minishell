@@ -6,13 +6,13 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/15 11:54:42 by dmather           #+#    #+#             */
-/*   Updated: 2016/08/15 11:54:50 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/03 10:38:27 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*strnl(const char *buff, size_t *pos, size_t stop)
+char		*strnl(const char *buff, size_t *pos, size_t stop)
 {
 	size_t	len;
 	size_t	offset;
@@ -27,7 +27,7 @@ static char		*strnl(const char *buff, size_t *pos, size_t stop)
 	return (ft_strsub(buff, offset, len));
 }
 
-static char		*sjoin(char *buff, size_t *pos, size_t eob, char *temp_line)
+char		*sjoin(char *buff, size_t *pos, size_t eob, char *temp_line)
 {
 	char	*temp;
 	char	*temp_nl;
@@ -40,7 +40,7 @@ static char		*sjoin(char *buff, size_t *pos, size_t eob, char *temp_line)
 	return (temp);
 }
 
-int				ft_gnl(const int fd, char **line)
+int			ft_gnl(const int fd, char **line)
 {
 	static size_t	pos = BUFF_SIZE;
 	static ssize_t	eob = BUFF_SIZE;

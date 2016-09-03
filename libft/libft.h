@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 12:00:22 by dmather           #+#    #+#             */
-/*   Updated: 2016/08/27 20:43:42 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/03 10:39:31 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,6 +183,13 @@ char				*ft_trim_qu(const char *s);
 char				*ft_uitoa(unsigned int n);
 char				*ft_uitoa_base(size_t n, unsigned int base);
 int					ft_gnl(const int fd, char **line);
+
+/*
+** FT_GNL
+*/
+char				*strnl(const char *buff, size_t *pos, size_t stop);
+char				*sjoin(char *buff, size_t *pos, size_t eob,
+															char *temp_line);
 
 /*
 ** FT_PRINTF
