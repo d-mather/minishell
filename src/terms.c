@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 11:51:51 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/06 22:25:53 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/06 22:45:42 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void	line_eddition(char *line, int i)
 	}
 //	else
 //	{
-//		ft_putchar(line[i]); //
+//		ft_putchar(line[i]);
 //	}
 }*/
