@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/02 14:54:45 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/06 16:52:07 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,52 @@ int		ft_cd(t_env *e)
 	return (CONT);
 }
 
+void	print_paren_man(t_paren_manage *pm, int j)
+{
+	int	i;
+
+	i = 0;
+	while (i <= j)
+	{
+		ft_putstr("\n");
+		if (pm->p_m_lines[i][0] == '\"')
+			pm->p_m_lines[i] = NULL;
+		else if (pm->p_m_lines[i][0] == '\"' ||
+					pm->p_m_lines[i][ft_strlen(pm->p_m_lines[i]) - 1] == '\"')
+			pm->p_m_lines[i] = ft_trim_qu(pm->p_m_lines[i]);
+		if (pm->p_m_lines[i] != NULL)
+			ft_putstr(pm->p_m_lines[i]);
+		i++;
+	}
+	ft_putstr("\n");
+}
+
+int		parenthesis_management(void)
+{
+	t_paren_manage	pm;
+	int				word;
+
+	word = 0;
+	pm.p_m_lines = (char **)malloc(sizeof (char *) * 100);
+	ft_putstr("*>");
+	while (ft_gnl(0, &pm.p_m_lines[word]) && ft_strcmp(pm.p_m_lines[word], "\"") &&
+				pm.p_m_lines[word][ft_strlen(pm.p_m_lines[word]) - 1] != '\"')
+	{
+		if (!pm.p_m_lines[word] || pm.p_m_lines[word][0] == '\0')
+		{
+			pm.p_m_lines[word] = "\n";
+		//	word++;
+		//	ft_putstr("*>");
+		//	continue ;
+		}
+		ft_putstr("*>");
+		word++;
+	}
+	print_paren_man(&pm, word);
+	ft_free_tab(&pm.p_m_lines, word + 1);
+	return (CONT);
+}
+
 int		ft_echo(t_env *e)
 {
 	char		*env;
@@ -46,6 +92,8 @@ int		ft_echo(t_env *e)
 	env = NULL;
 	if (e->n_input <= 1)
 		ft_putstr("\n");
+	else if (!ft_strcmp(e->input[1], "\""))
+		return (parenthesis_management());
 	else if (e->input[1][0] == '$' ||
 							(e->input[1][0] == '\"' && e->input[1][1] == '$'))
 	{

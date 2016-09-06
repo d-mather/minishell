@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 16:15:32 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/02 14:54:45 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/06 20:56:30 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		accessible(t_env *e)
 	{
 		if (access(e->full_paths[i], F_OK) == 0)
 		{
-			e->execute = e->full_paths[i];
+			e->execute = ft_strdup(e->full_paths[i]);
 			return (CONT);
 		}
 		i++;

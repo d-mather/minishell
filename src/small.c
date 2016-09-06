@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:20:40 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/03 22:09:13 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/06 20:56:05 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	cmd_nf(t_env *e)
 
 void	init(t_env *e)
 {
-	t_term t;
+//	t_term t;
 
-	tgetent(t.term_buffer, getenv("TERM"));
+//	tgetent(t.term_buffer, getenv("TERM"));
 	e->n_cmds = 0;
 	e->cmds = NULL;
 	e->n_input = 0;
@@ -56,6 +56,7 @@ void	free_all(t_env *e)
 	ft_free_tab(&e->cmds, e->n_cmds);
 	ft_free_tab(&e->full_paths, e->n_paths);
 	ft_free_tab(&e->paths, e->n_paths);
+	ft_strdel(&e->execute);
 }
 
 int		ft_issp(char *o)

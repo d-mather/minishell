@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/27 11:51:51 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/03 22:09:13 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/05 16:44:30 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,28 @@ void	set_input_mode(void)
 	tattr.c_cc[VTIME] = 0;
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &tattr);
 }
-
+/*
 int		tputs_putchar(int c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-void	line_eddition(char *line)
+void	line_eddition(char *line, int i)
 {
-	if (!ft_strcmp(line, "^[[A"))
-		tputs(tgetstr("cl", NULL), 1, tputs_putchar);
-}
+	//ft_putnbr(i);
+	if (line[i] == 27)
+	{
+		i++;
+		if (line[i] == '[')
+		{
+			i++;
+			if (line[i] == 'D')
+				tputs(tgetstr("le", NULL), 1, tputs_putchar);
+		}
+	}
+//	else
+//	{
+//		ft_putchar(line[i]);
+//	}
+}*/

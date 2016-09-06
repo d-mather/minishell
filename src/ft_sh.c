@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/03 22:14:13 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/06 21:13:06 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		get_input(t_env *e)
 	i = 0;
 	while (i < e->n_cmds && e)
 	{
-		if (ft_strncmp(e->cmds[i], "", 1) == 0)
+		if (ft_strncmp(e->cmds[i], "", 1) == 0 || !ft_strcmp(e->cmds[i], " "))
 		{
 			ft_putstr(C_RED
 					"bash: syntax error near unexpected token\';\'\n"C_RESET);
@@ -70,8 +70,8 @@ int		get_command(t_env *e)
 
 	prompt(e);
 	set_input_mode();
-	e->line = read_it();
-//	ft_gnl(0, &e->line);
+//	e->line = read_it();
+	ft_gnl(0, &e->line);
 	reset_input_mode();
 	tmp = ft_strtrim(e->line);
 	ft_strdel(&e->line);
@@ -90,15 +90,18 @@ int		get_command(t_env *e)
 	ft_strdel(&e->line);
 	return (get_input(e));
 }
-
+/*
 char	*read_it(void)
 {
 	static size_t	pos = 4;
 	static ssize_t	eob = 4;
 	static char		buff[4];
 	char			*temp_line;
+	int				i;
 
+	i = 0;
 	temp_line = ft_strnew(1);
+	ft_bzero(buff, 4);
 	while (buff[pos] != '\n' && eob > 0)
 	{
 		if ((ssize_t)pos == eob)
@@ -107,31 +110,30 @@ char	*read_it(void)
 				return (NULL);
 		if ((temp_line = sjoin(buff, &pos, eob, temp_line)) == NULL)
 			return (NULL);
-		line_eddition(temp_line);
+	//	ft_printf("|%c|\n", temp_line[i]);
+		line_eddition(temp_line, i);
+	//	if (ft_isprint(temp_line[i]))
+	//		ft_putchar(temp_line[i]);
+		i++;
 	}
-	ft_bzero(buff, 4);
+//	ft_putstr("\n");
 	return (temp_line);
 }
-
+*/
 void	save_env(char **envp, t_env *e)
 {
 	int	i;
 
 	e->ie = 0;
 	i = 0;
-	while (envp[i])
-	{
+	while (envp[e->ie])
 		e->ie++;
-		i++;
-	}
-	e->environ = (char **)malloc(sizeof(char *) * e->ie + 1);
-	i = 0;
+	e->environ = (char **)ft_memalloc(sizeof(char *) * e->ie);
 	while (i < e->ie)
 	{
-		e->environ[i] = envp[i];
+		e->environ[i] = ft_strdup(envp[i]);
 		i++;
 	}
-//	e->environ[e->ie] = NULL;
 }
 
 int		main(int argc, char *argv[], char **envp)
@@ -150,6 +152,6 @@ int		main(int argc, char *argv[], char **envp)
 			continue;
 		free_all(&e);
 	}
-//	ft_free_tab(&e.environ, e.ie);
+	ft_free_tab(&e.environ, e.ie + 1);
 	return (0);
 }
