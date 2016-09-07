@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/06 22:25:53 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/07 15:06:19 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int		get_input(t_env *e)
 		e->n_input = args.words;
 		ft_free_tab(&args.strings, args.words);
 		e->stat *= run_commands(e);
-		ft_free_tab(&e->input, e->n_input);
+		free_all(e);
+//		ft_free_tab(&e->input, e->n_input);
 		i++;
 	}
 	return (CONT);
@@ -150,8 +151,9 @@ int		main(int argc, char *argv[], char **envp)
 		init(&e);
 		if (get_command(&e) == 0)
 			continue;
-		free_all(&e);
+		ft_free_tab(&e.cmds, e.n_cmds);
+//		free_all(&e);
 	}
-	ft_free_tab(&e.environ, e.ie + 1);
+	ft_free_tab(&e.environ, e.ie);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 17:58:59 by dmather           #+#    #+#             */
-/*   Updated: 2016/08/27 17:39:11 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/07 15:03:01 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ void	run_it(t_env *e)
 		if (access(e->input[0], F_OK) == 0)
 			execve(e->input[0], e->input, e->environ);
 		else
-		{
 			ft_putstr(C_RED"Invalid program or path to file program\n"C_RESET);
-			exit(0);
-		}
 		exit(0);
 	}
 	else
@@ -45,7 +42,10 @@ int		system_func(t_env *e)
 			return (CONT);
 		}
 		if (pid == 0)
+		{
 			run_it(e);
+//			ft_strdel(&e->execute);
+		}
 		wait(&pid);
 	}
 	else
