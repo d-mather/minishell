@@ -6,15 +6,64 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/07 15:06:19 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/07 18:35:06 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh.h"
+/*
+void	pipe_loop(t_env *e)
+{
+	t_split_string	args;
+	char			*tmp;
+	int				i;
 
+	i = 0;
+	tmp = ;
+	args = ft_nstrsplit(tmp, "|");
+	ft_strdel(&tmp);
+	e->pipes = ft_tabdup(args.strings, args.words);
+	e->n_pipes = args.words;
+	ft_free_tab(&args.strings, args.words);
+	while (i < n_pipes)
+	{
+		ft_pipes(e);
+		i++;
+	}
+}
+
+int ft_pipes(t_env *e)
+{
+	int     fd[2];
+	int		nbytes;
+	pid_t   child_pid;
+	char    readbuffer[80];
+
+    pipe(fd);
+    if((child_pid = fork()) < 0)
+    {
+		ft_putstr(C_RED"ERROR: Fork"C_RESET);
+		return(0);
+	}
+	if(child_pid == 0)
+	{
+		close(fd[0]);
+		write(fd[1], input[0], ft_strlen(input[0]) + 1);
+		exit(0);
+//		return (1);
+	}
+	else
+	{
+		close(fd[1]);
+		nbytes = read(fd[0], readbuffer, sizeof(readbuffer));
+	}		
+	return(1);
+}
+*/
 int		run_commands(t_env *e)
 {
 	ft_putstr(C_BLUE"");
+
 	if (!ft_strcmp(e->input[0], "exit"))
 		return (ex(e));
 	else if (!ft_strcmp(e->input[0], "setenv"))
@@ -58,7 +107,6 @@ int		get_input(t_env *e)
 		ft_free_tab(&args.strings, args.words);
 		e->stat *= run_commands(e);
 		free_all(e);
-//		ft_free_tab(&e->input, e->n_input);
 		i++;
 	}
 	return (CONT);

@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 16:54:21 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/06 22:25:53 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/07 17:08:03 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct		s_env
 	int				ie;
 	char			*execute;
 	char			*name;
+	char			**pipes;
+	int				n_pipes;
 }					t_env;
 
 typedef struct		s_paren_manage

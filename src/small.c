@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:20:40 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/07 15:05:42 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/07 18:46:51 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,16 @@ void	init(t_env *e)
 	e->line = NULL;
 	e->execute = NULL;
 	e->name = NULL;
+	e->pipes = NULL;
+	e->n_pipes = 0;
 }
 
 void	prompt(t_env *e)
 {
 	char		*prompt;
+//	const wchar_t martini_emoji = 0x1F378;
 
+//	ft_putstr((const char)martini_emoji);
 	prompt = ft_getenv("USER", e->environ);
 	ft_putstr(C_PURPLE"");
 	ft_putstr(prompt);

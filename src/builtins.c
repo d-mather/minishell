@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/06 22:25:53 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/07 16:08:38 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int		parenthesis_management(void)
 	{
 		if (!pm.p_m_lines[word] || pm.p_m_lines[word][0] == '\0')
 		{
+			ft_printf("You entered Enter! :)\n");
 			pm.p_m_lines[word] = "\n";
 		//	word++;
 		//	ft_putstr("*>");
