@@ -59,6 +59,6 @@ void	line_eddition(char *line, int i)
 	}
 //	else
 //	{
-//		ft_putchar(line[i]); //
+//		ft_putchar(line[i]);
 //	}
 }*/
