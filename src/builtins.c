@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/07 16:08:38 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/08 07:53:41 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@ int		ft_cd(t_env *e)
 
 	i = 1;
 	if (e->n_input == 1)
-	{
-		chdir(ft_getenv("HOME", e->environ));
-		return (CONT);
-	}
-	if (e->input[1][0] != '/')
+		i = chdir(ft_getenv("HOME", e->environ));
+	else if (e->input[1][0] != '/')
 	{
 		cwd = NULL;
 		cwd = getcwd(cwd, ft_strlen(cwd));
@@ -72,7 +69,7 @@ int		parenthesis_management(void)
 	{
 		if (!pm.p_m_lines[word] || pm.p_m_lines[word][0] == '\0')
 		{
-			ft_printf("You entered Enter! :)\n");
+			ft_printf("You entered Enter! :)\n"); //
 			pm.p_m_lines[word] = "\n";
 		//	word++;
 		//	ft_putstr("*>");
@@ -160,7 +157,6 @@ int		ft_env(t_env *e)
 	char	*tmp;
 
 	i = 0;
-	tmp = NULL;
 	while (i < e->ie)
 	{
 		tmp = NULL;

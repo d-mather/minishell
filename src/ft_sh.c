@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/07 18:35:06 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/08 07:51:39 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ void	pipe_loop(t_env *e)
 	}
 }
 
-int ft_pipes(t_env *e)
+int		ft_pipes(t_env *e)
 {
-	int     fd[2];
+	int		fd[2];
 	int		nbytes;
-	pid_t   child_pid;
-	char    readbuffer[80];
+	pid_t	child_pid;
+	char	readbuffer[80];
 
-    pipe(fd);
-    if((child_pid = fork()) < 0)
-    {
+	pipe(fd);
+	if((child_pid = fork()) < 0)
+	{
 		ft_putstr(C_RED"ERROR: Fork"C_RESET);
 		return(0);
 	}
@@ -56,7 +56,7 @@ int ft_pipes(t_env *e)
 	{
 		close(fd[1]);
 		nbytes = read(fd[0], readbuffer, sizeof(readbuffer));
-	}		
+	}
 	return(1);
 }
 */
@@ -200,8 +200,36 @@ int		main(int argc, char *argv[], char **envp)
 		if (get_command(&e) == 0)
 			continue;
 		ft_free_tab(&e.cmds, e.n_cmds);
-//		free_all(&e);
 	}
 	ft_free_tab(&e.environ, e.ie);
 	return (0);
 }
+/*
+void	redirection(t_env *e)
+{
+	int		n;
+	int		file;
+	char	c[1];
+
+	if (ft_strncmp(str, ">", 1) == 0)
+	{
+		file = open(path, O_RDONLY | O_WRONLY | O_TRUNC);
+		write(file,input,ft_strlen(input) + 1);
+		close(file);
+		return 0;
+	}
+	if (ft_strncmp(str, ">>", 2) == 0) //needs a condition for NFS file systems 
+	{
+		file = open(path, O_RDONLY | O_WRONLY | O_APPEND);
+		write(file,input,ft_strlen(input) + 1);   
+		close(file);
+		return 0;
+	}
+	if (ft_strncmp(str, "<", 1) == 0) // input redirected from a file in this manner
+	{
+		file = open(path, O_RDONLY);
+		while(read(file, c, 1) > 0);
+			write(1, c, 1);
+		write(1, "\n", 1);
+	}
+}*/
