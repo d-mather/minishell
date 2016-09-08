@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/08 08:47:44 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/08 20:26:28 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		ft_cd(t_env *e)
 {
 	char	*cwd;
+	char	*tmp;
 	int		i;
 
 	i = 1;
@@ -26,8 +27,10 @@ int		ft_cd(t_env *e)
 	{
 		cwd = NULL;
 		cwd = getcwd(cwd, ft_strlen(cwd));
-		ft_strcat(cwd, "/");
-		ft_strcat(cwd, e->input[1]);
+		tmp = ft_strdup(cwd);
+		ft_strdel(&cwd);
+		cwd = ft_nstrjoin(tmp, "/", e->input[1]);
+		ft_strdel(&tmp);
 		i = chdir(cwd);
 		ft_strdel(&cwd);
 	}

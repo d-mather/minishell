@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/08 07:51:39 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/08 20:29:33 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		get_input(t_env *e)
 		e->n_input = args.words;
 		ft_free_tab(&args.strings, args.words);
 		e->stat *= run_commands(e);
-		free_all(e);
+		ft_free_tab(&e->input, e->n_input);
 		i++;
 	}
 	return (CONT);

@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 17:58:59 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/08 07:17:49 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/08 20:29:33 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int		system_func(t_env *e)
 	}
 	else
 		return (0);
+	free_all(e);
 	return (CONT);
 }

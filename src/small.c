@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:20:40 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/08 07:47:49 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/08 20:29:33 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	prompt(t_env *e)
 
 void	free_all(t_env *e)
 {
-	ft_free_tab(&e->input, e->n_input);
 	ft_free_tab(&e->full_paths, e->n_paths);
 	ft_free_tab(&e->paths, e->n_paths);
 	ft_strdel(&e->execute);
