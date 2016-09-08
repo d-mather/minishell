@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/08 07:53:41 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/08 08:47:44 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int		ft_cd(t_env *e)
 	i = 1;
 	if (e->n_input == 1)
 		i = chdir(ft_getenv("HOME", e->environ));
+	else if (e->input[1][0] == '/')
+		i = chdir(e->input[1]);
 	else if (e->input[1][0] != '/')
 	{
 		cwd = NULL;
@@ -29,8 +31,6 @@ int		ft_cd(t_env *e)
 		i = chdir(cwd);
 		ft_strdel(&cwd);
 	}
-	else if (e->input[1][0] == '/')
-		i = chdir(e->input[1]);
 	if (i != 0)
 		ft_putstr(C_RED"No such file or directory. Walala!\n"C_RESET);
 	return (CONT);
