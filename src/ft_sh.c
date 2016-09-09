@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/09 13:07:55 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/09 19:16:28 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,21 +117,20 @@ int		get_command(t_env *e)
 	t_split_string	args;
 	char			*tmp;
 
+	tmp = NULL;
 	prompt(e);
-	set_input_mode();
+//	set_input_mode();
 //	e->line = read_it();
 	ft_gnl(0, &e->line);
-	reset_input_mode();
+//	reset_input_mode();
+	if (ft_issp(e->line) == 0)
+	{
+		ft_strdel(&e->line);
+		return (CONT);
+	}
 	tmp = ft_strtrim(e->line);
 	ft_strdel(&e->line);
 	e->line = tmp;
-	if (ft_issp(e->line) == 0)
-	{
-		if (!e->line)
-			return (0);
-		ft_strdel(&e->line);
-		return (0);
-	}
 	args = ft_nstrsplit(e->line, ';');
 	e->cmds = ft_tabdup(args.strings, args.words);
 	e->n_cmds = args.words;

@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 16:54:21 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/07 17:08:03 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/09 20:10:56 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int					ft_unsetenv(t_env *e);
 ** builtins.c
 */
 int					ft_cd(t_env *e);
+int					more_cd(t_env *e, int i);
 int					ft_echo(t_env *e);
 void				more_echo(t_env *e);
 int					ex(t_env *e);

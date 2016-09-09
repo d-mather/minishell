@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/09 13:26:21 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/09 20:18:26 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		ft_cd(t_env *e)
 		i = chdir(ft_getenv("HOME", e->environ));
 	else if (e->input[1][0] == '/')
 		i = chdir(e->input[1]);
+	else if (e->input[1][0] == '~')
+		i = more_cd(e, i);
 	else if (e->input[1][0] != '/')
 	{
 		cwd = NULL;
@@ -37,6 +39,23 @@ int		ft_cd(t_env *e)
 	if (i != 0)
 		ft_putstr(C_RED"No such file or directory. Walala!\n"C_RESET);
 	return (CONT);
+}
+
+int		more_cd(t_env *e, int i)
+{
+	char	*path;
+
+	path = NULL;
+	if (!ft_strcmp(e->input[1], "~"))
+		i = chdir(ft_getenv("HOME", e->environ));
+	else
+	{
+		path = ft_strchr(e->input[1], '/');
+		path = ft_strjoin(ft_getenv("HOME", e->environ), path);
+		i = chdir(path);
+		ft_strdel(&path);
+	}
+	return (i);
 }
 
 void	print_paren_man(t_paren_manage *pm, int j)
@@ -115,11 +134,16 @@ void	more_echo(t_env *e)
 {
 	int		i;
 	char	*o;
+	char	*tmp;
 
 	i = 1;
 	while (i < e->n_input)
 	{
-		o = ft_strjoin(ft_trim_qu(e->input[i]), " ");
+		tmp = ft_trim_qu(e->input[i]);
+		ft_strdel(&e->input[i]);
+		e->input[i] = ft_strdup(tmp);
+		o = ft_strjoin(e->input[i], " ");
+		ft_strdel(&tmp);
 		ft_putstr(o);
 		ft_strdel(&o);
 		i++;
