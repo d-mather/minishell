@@ -176,6 +176,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtoupper(char *str);
 char				*ft_strtrim(const char *s);
 char				**ft_tabdup(char **table, int len);
+int					ft_tablen(char **table);
 char				*ft_tabstrstr(char **haystack, const char *needle);
 char				ft_tolower(char c);
 char				ft_toupper(char c);

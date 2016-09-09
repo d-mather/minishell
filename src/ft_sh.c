@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/08 20:29:33 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/09 13:07:55 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,18 +171,24 @@ char	*read_it(void)
 */
 void	save_env(char **envp, t_env *e)
 {
-	int	i;
+//	int	i;
 
+	e->environ = ft_tabdup(envp, ft_tablen(envp));
+	e->ie = ft_tablen(e->environ);
+
+/*
 	e->ie = 0;
 	i = 0;
 	while (envp[e->ie])
 		e->ie++;
-	e->environ = (char **)ft_memalloc(sizeof(char *) * e->ie);
+	e->environ = (char **)malloc(sizeof(char *) * e->ie);
 	while (i < e->ie)
 	{
 		e->environ[i] = ft_strdup(envp[i]);
 		i++;
 	}
+	e->environ[e->ie - 1] = NULL;
+*/
 }
 
 int		main(int argc, char *argv[], char **envp)

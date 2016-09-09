@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 16:15:32 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/07 14:47:02 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/09 13:31:48 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,34 +76,28 @@ char	*ft_getenv(char *name, char **envp)
 
 int		ft_setenv(t_env *e)
 {
-	int		i;
 	char	*tmp;
+	char	**tmp2;
 
-	i = 0;
-	tmp = NULL;
 	if (e->input[1] && e->input[2] && e->n_input == 3)
 	{
-		while (i < e->ie)
-			i++;
-		e->ie += 1;
-		e->environ = (char **)ft_realloc(e->environ, sizeof(char *) * e->ie);
-		tmp = ft_strdup(e->input[2]);
-		ft_strdel(&e->input[2]);
+		tmp2 = ft_tabdup(e->environ, ++e->ie);
+		ft_free_tab(&e->environ, e->ie);
+		e->environ = tmp2;
+		tmp = e->input[2];
 		e->input[2] = ft_trim_qu(tmp);
 		ft_strdel(&tmp);
-		e->environ[i] = ft_nstrjoin(e->input[1], "=", e->input[2]);
+		e->environ[e->ie - 1] = ft_nstrjoin(e->input[1], "=", e->input[2]);
 	}
 	else if (e->n_input == 2 && e->input[1])
 	{
-		while (i < e->ie)
-			i++;
-		e->ie += 1;
-		e->environ = (char **)ft_realloc(e->environ, sizeof(char *) * e->ie);
-		tmp = ft_strdup(e->input[1]);
-		ft_strdel(&e->input[1]);
+		tmp2 = ft_tabdup(e->environ, ++e->ie);
+		ft_free_tab(&e->environ, e->ie);
+		e->environ = tmp2;
+		tmp = e->input[1];
 		e->input[1] = ft_trim_qu(tmp);
 		ft_strdel(&tmp);
-		e->environ[i] = e->input[1];
+		e->environ[e->ie - 1] = ft_strdup(e->input[1]);
 	}
 	else
 		ft_putstr(C_RED

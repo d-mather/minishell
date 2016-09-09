@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabdup.c                                        :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,25 +12,12 @@
 
 #include "libft.h"
 
-char	**ft_tabdup(char **table, int len)
+int	ft_tablen(char **table)
 {
 	int		i;
-	char	**newtab;
 
 	i = 0;
-	if ((newtab = (char **)malloc(sizeof(char *) * (len + 1))) != NULL)
-	{
-		while (i < len && table[i])
-		{
-			newtab[i] = ft_strdup(table[i]);
-			++i;
-		}
-		while (i < len)
-		{
-			newtab[i] = NULL;
-			++i;
-		}
-		newtab[len] = NULL;
-	}
-	return (newtab);
+	while (table[i])
+		++i;
+	return (i);
 }

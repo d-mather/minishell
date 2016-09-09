@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/08 20:26:28 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/09 13:26:21 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,15 +157,13 @@ int		ex(t_env *e)
 int		ft_env(t_env *e)
 {
 	int		i;
-	char	*tmp;
 
 	i = 0;
 	while (i < e->ie)
 	{
-		tmp = NULL;
-		tmp = e->environ[i++];
-		ft_putstr(tmp);
+		ft_putstr(e->environ[i]);
 		ft_putstr("\n");
+		++i;
 	}
 	return (CONT);
 }
