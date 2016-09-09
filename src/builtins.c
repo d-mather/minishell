@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/09 20:18:26 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/09 20:53:46 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int		parenthesis_management(void)
 int		ft_echo(t_env *e)
 {
 	char		*env;
+	char		*tmp;
 
 	env = NULL;
 	if (e->n_input <= 1)
@@ -117,13 +118,14 @@ int		ft_echo(t_env *e)
 	else if (e->input[1][0] == '$' ||
 							(e->input[1][0] == '\"' && e->input[1][1] == '$'))
 	{
-		env = ft_getenv(ft_trim_qu(ft_strchr(e->input[1], '$')) + 1,
-																	e->environ);
+		tmp = ft_trim_qu(ft_strchr(e->input[1], '$'));
+		env = ft_getenv(tmp + 1,e->environ);
 		if (ft_strcmp(env, ft_strchr(e->input[1], '$')) == 0)
 			ft_putstr(C_RED"Invalid environment."C_RESET);
 		else
 			ft_putstr(env);
 		ft_putstr("\n");
+		ft_strdel(&tmp);
 	}
 	else
 		more_echo(e);

@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 17:58:59 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/09 17:02:09 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/09 21:06:00 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,12 @@ int		system_func(t_env *e)
 		if (pid == 0)
 			run_it(e);
 		wait(&pid);
+		free_all(e);
+		return (CONT);
 	}
 	else
+	{
+		free_all(e);
 		return (0);
-	free_all(e);
-	return (CONT);
+	}
 }
