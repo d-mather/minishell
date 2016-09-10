@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/09 20:53:46 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/10 13:23:49 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,24 @@ int		more_cd(t_env *e, int i)
 
 void	print_paren_man(t_paren_manage *pm, int j)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (i <= j)
 	{
 		ft_putstr("\n");
-		if (pm->p_m_lines[i][0] == '\"')
+		if (!pm->p_m_lines[i])
 			pm->p_m_lines[i] = NULL;
-		else if (pm->p_m_lines[i][0] == '\"' ||
-					pm->p_m_lines[i][ft_strlen(pm->p_m_lines[i]) - 1] == '\"')
-			pm->p_m_lines[i] = ft_trim_qu(pm->p_m_lines[i]);
+		else if (pm->p_m_lines[i][0] == '\"')
+			return ;
+		else if (pm->p_m_lines[i][ft_strlen(pm->p_m_lines[i]) - 1] == '\"')
+		{
+			tmp = ft_strdup(pm->p_m_lines[i]);
+			ft_strdel(&pm->p_m_lines[i]);
+			pm->p_m_lines[i] = ft_trim_qu(tmp);
+			ft_strdel(&tmp);
+		}
 		if (pm->p_m_lines[i] != NULL)
 			ft_putstr(pm->p_m_lines[i]);
 		i++;
@@ -84,22 +91,24 @@ int		parenthesis_management(void)
 	int				word;
 
 	word = 0;
-	pm.p_m_lines = (char **)malloc(sizeof (char *) * 100);
+	pm.p_m_lines = (char **)ft_memalloc(sizeof (char *) * 100);
 	ft_putstr("*>");
-	while (ft_gnl(0, &pm.p_m_lines[word]) && ft_strcmp(pm.p_m_lines[word], "\"") &&
-				pm.p_m_lines[word][ft_strlen(pm.p_m_lines[word]) - 1] != '\"')
+	set_input_mode();
+	ft_gnl(0, &pm.p_m_lines[word]);
+	if (!pm.p_m_lines[word])
+		pm.p_m_lines[word] = "\n";
+	while (pm.p_m_lines[word] &&
+			pm.p_m_lines[word][ft_strlen(pm.p_m_lines[word]) - 1] != '\"')
 	{
-		if (!pm.p_m_lines[word] || pm.p_m_lines[word][0] == '\0')
-		{
-			ft_printf("You entered Enter! :)\n"); //
+		if (!pm.p_m_lines[word])
 			pm.p_m_lines[word] = "\n";
-		//	word++;
-		//	ft_putstr("*>");
-		//	continue ;
-		}
-		ft_putstr("*>");
 		word++;
+		ft_putstr("*>");
+		ft_gnl(0, &pm.p_m_lines[word]);
+		if (!pm.p_m_lines[word])
+			pm.p_m_lines[word] = "\n";
 	}
+	reset_input_mode();
 	print_paren_man(&pm, word);
 	ft_free_tab(&pm.p_m_lines, word + 1);
 	return (CONT);
