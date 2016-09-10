@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/10 13:23:49 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/10 17:34:25 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,15 +114,33 @@ int		parenthesis_management(void)
 	return (CONT);
 }
 
+int		check_dquote(t_env *e)
+{
+	int	i;
+	int	y;
+
+	y = 0;
+	i = 0;
+	while (e->input[1][i] && y <= 2)
+	{
+		if (e->input[1][i] == '\"')
+			y++;
+		i++;
+	}
+	return (y);
+}
+
 int		ft_echo(t_env *e)
 {
 	char		*env;
 	char		*tmp;
+	int			y;
 
 	env = NULL;
+	y = check_dquote(e);
 	if (e->n_input <= 1)
 		ft_putstr("\n");
-	else if (!ft_strcmp(e->input[1], "\""))
+	else if (y == 1)
 		return (parenthesis_management());
 	else if (e->input[1][0] == '$' ||
 							(e->input[1][0] == '\"' && e->input[1][1] == '$'))
