@@ -6,7 +6,7 @@
 #    By: dmather <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/07/05 14:51:29 by dmather           #+#    #+#              #
-#    Updated: 2016/09/03 22:03:09 by dmather          ###   ########.fr        #
+#    Updated: 2016/09/10 18:09:05 by dmather          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,12 +20,13 @@ FLAGS		= -Wall -Wextra -Werror -ltermcap -g3# -ltermlib
 LIBFT		= -L libft -lft
 INCLUDES	= -I include -I libft
 
-SRCS		=	src/ft_sh.c		\
-				src/execs.c		\
-				src/ft_getenv.c	\
-				src/builtins.c	\
-				src/small.c		\
-				src/terms.c		\
+SRCS		=	src/ft_sh.c			\
+				src/execs.c			\
+				src/ft_getenv.c		\
+				src/builtins.c		\
+				src/builtin_echo.c	\
+				src/small.c			\
+				src/terms.c			\
 
 all: $(NAME)
 

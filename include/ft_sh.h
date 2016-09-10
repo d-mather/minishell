@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 16:54:21 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/09 20:10:56 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/10 18:02:24 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void				save_env(char **envp, t_env *e);
 */
 void				run_it(t_env *e);
 int					system_func(t_env *e);
+void				more_setenv(t_env *e);
+int					more_unsetenv(t_env *e);
 
 /*
 ** ft_getenv.c
@@ -78,10 +80,17 @@ int					ft_unsetenv(t_env *e);
 */
 int					ft_cd(t_env *e);
 int					more_cd(t_env *e, int i);
-int					ft_echo(t_env *e);
-void				more_echo(t_env *e);
 int					ex(t_env *e);
 int					ft_env(t_env *e);
+
+/*
+** builtin_echo.c
+*/
+int					ft_echo(t_env *e);
+void				more_echo(t_env *e);
+int					check_dquote(t_env *e);
+int					parenthesis_management(void);
+void				print_paren_man(t_paren_manage *pm, int j);
 
 /*
 ** small.c
@@ -97,7 +106,5 @@ int					ft_issp(char *o);
 */
 void				reset_input_mode(void);
 void				set_input_mode(void);
-//int					tputs_putchar(int c);
-//void				line_eddition(char *line, int i);
 
 #endif

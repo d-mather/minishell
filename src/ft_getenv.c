@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/10 16:15:32 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/09 21:05:37 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/10 17:59:54 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,7 @@ int		ft_setenv(t_env *e)
 		e->environ[e->ie - 1] = ft_nstrjoin(e->input[1], "=", e->input[2]);
 	}
 	else if (e->n_input == 2 && e->input[1])
-	{
-		tmp2 = ft_tabdup(e->environ, ++e->ie);
-		ft_free_tab(&e->environ, e->ie);
-		e->environ = tmp2;
-		tmp = e->input[1];
-		e->input[1] = ft_trim_qu(tmp);
-		ft_strdel(&tmp);
-		e->environ[e->ie - 1] = ft_strdup(e->input[1]);
-	}
+		more_setenv(e);
 	else
 		ft_putstr(C_RED
 					"Please be specific or use the correct syntax.\n"C_RESET);
@@ -107,7 +99,7 @@ int		ft_setenv(t_env *e)
 
 int		ft_unsetenv(t_env *e)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	if (e->input[1])
@@ -116,11 +108,7 @@ int		ft_unsetenv(t_env *e)
 		while (i < e->ie && UNSETENV_FIND)
 			i++;
 		if (!e->environ[i])
-		{
-			ft_putstr(C_RED"Invironment variable not found\n"C_RESET);
-			ft_strdel(&e->name);
-			return (CONT);
-		}
+			return (more_unsetenv(e));
 		ft_strdel(&e->environ[i]);
 		while (i < (e->ie - 1))
 		{
