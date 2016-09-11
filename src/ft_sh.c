@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/10 17:48:53 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 10:36:29 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ int		get_command(t_env *e)
 
 	tmp = NULL;
 	prompt(e);
-//	set_input_mode();
+	set_input_mode();
 //	e->line = read_it();
 	ft_gnl(0, &e->line);
-//	reset_input_mode();
+	reset_input_mode();
 	if (ft_issp(e->line) == 0)
 	{
 		ft_strdel(&e->line);

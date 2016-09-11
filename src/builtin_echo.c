@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/10 17:38:25 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/10 18:08:26 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 10:33:50 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	more_echo(t_env *e)
 	char	*tmp;
 
 	i = 1;
+	tmp = NULL;
 	while (i < e->n_input)
 	{
 		tmp = ft_trim_qu(e->input[i]);
@@ -65,15 +66,25 @@ void	more_echo(t_env *e)
 int		check_dquote(t_env *e)
 {
 	int	i;
+	int	j;
 	int	y;
 
 	y = 0;
-	i = 0;
-	while (e->input[1][i] && y <= 2)
+	j = e->n_input;
+	if (!e->input[1])
+		return (y);
+	while (e->input[j - 1] && y <= 2)
 	{
-		if (e->input[1][i] == '\"')
-			y++;
-		i++;
+		i = 0;
+		if (!ft_strcmp(e->input[j - 1], "echo"))
+			return (y);
+		while (e->input[j - 1][i] && y <= 2)
+		{
+			if (e->input[j - 1][i] == '\"')
+				y++;
+			i++;
+		}
+		j--;
 	}
 	return (y);
 }
