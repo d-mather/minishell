@@ -1,5 +1,5 @@
-# 42sh
-Own mini Shell
+# 42sh | 
+Own mini Shell. 
 Usage:
  'make' to compile,
  'make re' to recompile everything including libft,

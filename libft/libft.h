@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/28 12:00:22 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/03 20:19:42 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 11:56:56 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtoupper(char *str);
 char				*ft_strtrim(const char *s);
 char				**ft_tabdup(char **table, int len);
+int					ft_tablen(char **table);
 char				*ft_tabstrstr(char **haystack, const char *needle);
 char				ft_tolower(char c);
 char				ft_toupper(char c);

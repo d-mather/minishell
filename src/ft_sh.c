@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/06 22:25:53 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 11:50:53 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,19 @@ int		get_command(t_env *e)
 	t_split_string	args;
 	char			*tmp;
 
+	tmp = NULL;
 	prompt(e);
 	set_input_mode();
-//	e->line = read_it();
 	ft_gnl(0, &e->line);
 	reset_input_mode();
+	if (ft_issp(e->line) == 0)
+	{
+		ft_strdel(&e->line);
+		return (CONT);
+	}
 	tmp = ft_strtrim(e->line);
 	ft_strdel(&e->line);
 	e->line = tmp;
-	if (ft_issp(e->line) == 0)
-	{
-		if (!e->line)
-			return (0);
-		ft_strdel(&e->line);
-		return (0);
-	}
 	args = ft_nstrsplit(e->line, ';');
 	e->cmds = ft_tabdup(args.strings, args.words);
 	e->n_cmds = args.words;
@@ -90,50 +88,11 @@ int		get_command(t_env *e)
 	ft_strdel(&e->line);
 	return (get_input(e));
 }
-/*
-char	*read_it(void)
-{
-	static size_t	pos = 4;
-	static ssize_t	eob = 4;
-	static char		buff[4];
-	char			*temp_line;
-	int				i;
 
-	i = 0;
-	temp_line = ft_strnew(1);
-	ft_bzero(buff, 4);
-	while (buff[pos] != '\n' && eob > 0)
-	{
-		if ((ssize_t)pos == eob)
-			if (((pos = 0) == 0) &&
-								((eob = read(0, buff, 4)) == -1))
-				return (NULL);
-		if ((temp_line = sjoin(buff, &pos, eob, temp_line)) == NULL)
-			return (NULL);
-	//	ft_printf("|%c|\n", temp_line[i]);
-		line_eddition(temp_line, i);
-	//	if (ft_isprint(temp_line[i]))
-	//		ft_putchar(temp_line[i]);
-		i++;
-	}
-//	ft_putstr("\n");
-	return (temp_line);
-}
-*/
 void	save_env(char **envp, t_env *e)
 {
-	int	i;
-
-	e->ie = 0;
-	i = 0;
-	while (envp[e->ie])
-		e->ie++;
-	e->environ = (char **)ft_memalloc(sizeof(char *) * e->ie);
-	while (i < e->ie)
-	{
-		e->environ[i] = ft_strdup(envp[i]);
-		i++;
-	}
+	e->environ = ft_tabdup(envp, ft_tablen(envp));
+	e->ie = ft_tablen(e->environ);
 }
 
 int		main(int argc, char *argv[], char **envp)
@@ -141,6 +100,7 @@ int		main(int argc, char *argv[], char **envp)
 	t_env	e;
 
 	e.environ = NULL;
+	e.last_cwd = ft_strnew(24);
 	if (argc > 1 && argv[1])
 		ft_putstr(C_RED"No arguments handled yet\n"C_RESET);
 	save_env(envp, &e);
@@ -150,8 +110,10 @@ int		main(int argc, char *argv[], char **envp)
 		init(&e);
 		if (get_command(&e) == 0)
 			continue;
-		free_all(&e);
+		ft_free_tab(&e.cmds, e.n_cmds);
 	}
-	ft_free_tab(&e.environ, e.ie + 1);
+	ft_free_tab(&e.environ, e.ie);
+	if (e.last_cwd != NULL)
+		ft_strdel(&e.last_cwd);
 	return (0);
 }

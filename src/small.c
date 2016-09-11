@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:20:40 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/06 22:25:53 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 11:50:57 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ void	cmd_nf(t_env *e)
 
 void	init(t_env *e)
 {
-//	t_term t;
-
-//	tgetent(t.term_buffer, getenv("TERM"));
 	e->n_cmds = 0;
 	e->cmds = NULL;
 	e->n_input = 0;
@@ -39,11 +36,13 @@ void	init(t_env *e)
 	e->line = NULL;
 	e->execute = NULL;
 	e->name = NULL;
+	e->pipes = NULL;
+	e->n_pipes = 0;
 }
 
 void	prompt(t_env *e)
 {
-	char		*prompt;
+	char	*prompt;
 
 	prompt = ft_getenv("USER", e->environ);
 	ft_putstr(C_PURPLE"");
@@ -53,7 +52,6 @@ void	prompt(t_env *e)
 
 void	free_all(t_env *e)
 {
-	ft_free_tab(&e->cmds, e->n_cmds);
 	ft_free_tab(&e->full_paths, e->n_paths);
 	ft_free_tab(&e->paths, e->n_paths);
 	ft_strdel(&e->execute);
@@ -66,8 +64,6 @@ int		ft_issp(char *o)
 	i = 0;
 	if (o)
 	{
-		if (o[i] == '\0' || o[i] == '\n')
-			return (0);
 		while (o[i] == ' ' || o[i] == '\t')
 		{
 			if (o[i] == '\0' || o[i] == '\n')

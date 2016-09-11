@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_trim_qu.c                                       :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/27 20:48:31 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/11 11:56:53 by dmather          ###   ########.fr       */
+/*   Created: 2016/07/10 10:51:51 by dmather           #+#    #+#             */
+/*   Updated: 2016/09/11 11:56:50 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_trim_qu(char const *s)
+int	ft_tablen(char **table)
 {
 	int		i;
-	int		len;
-	char	*str;
 
-	if (s == NULL)
-		return (NULL);
-	len = ft_strlen(s);
-	while (s[len - 1] == '\"' || s[len - 1] == '\'')
-		len--;
-	i = -1;
-	while (s[++i] == '\"' || s[i] == '\'')
-		len--;
-	if (len <= 0)
-		len = 0;
-	str = (char*)malloc(sizeof(char) * (len + 1));
-	if (str == NULL)
-		return (NULL);
-	s += i;
-	i = -1;
-	while (++i < len)
-		str[i] = *s++;
-	str[i] = '\0';
-	return (str);
+	i = 0;
+	while (table[i])
+		++i;
+	return (i);
 }
