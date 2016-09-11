@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/11 10:59:32 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 11:18:13 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int		ft_cd(t_env *e)
 {
-	char	*cwd;
-	char	*tmp;
 	int		i;
 
 	i = 1;
@@ -28,21 +26,7 @@ int		ft_cd(t_env *e)
 	else if (e->input[1][0] == '~')
 		i = more_cd(e, i);
 	else if (e->input[1][0] != '/')
-	{
-		cwd = NULL;
-		cwd = getcwd(cwd, ft_strlen(cwd));
-		tmp = ft_strdup(cwd);
-		ft_strdel(&cwd);
-		cwd = ft_nstrjoin(tmp, "/", e->input[1]);
-		ft_strdel(&tmp);
-		i = chdir(cwd);
-		if (i == 0)
-		{
-			ft_strdel(&e->last_cwd);
-			e->last_cwd = ft_strdup(cwd);
-		}
-		ft_strdel(&cwd);
-	}
+		i = even_more_cd(e, i);
 	if (i != 0)
 		ft_putstr(C_RED"No such file or directory. Walala!\n"C_RESET);
 	return (CONT);
@@ -74,6 +58,27 @@ int		more_cd(t_env *e, int i)
 		}
 		ft_strdel(&path);
 	}
+	return (i);
+}
+
+int		even_more_cd(t_env *e, int i)
+{
+	char	*cwd;
+	char	*tmp;
+
+	cwd = NULL;
+	cwd = getcwd(cwd, ft_strlen(cwd));
+	tmp = ft_strdup(cwd);
+	ft_strdel(&cwd);
+	cwd = ft_nstrjoin(tmp, "/", e->input[1]);
+	ft_strdel(&tmp);
+	i = chdir(cwd);
+	if (i == 0)
+	{
+		ft_strdel(&e->last_cwd);
+		e->last_cwd = ft_strdup(cwd);
+	}
+	ft_strdel(&cwd);
 	return (i);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 16:54:21 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/11 10:43:39 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 11:10:19 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int					ft_unsetenv(t_env *e);
 */
 int					ft_cd(t_env *e);
 int					more_cd(t_env *e, int i);
+int					even_more_cd(t_env *e, int i);
 int					ex(t_env *e);
 int					ft_env(t_env *e);
 
