@@ -6,13 +6,13 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/13 11:54:51 by dmather           #+#    #+#             */
-/*   Updated: 2016/08/27 16:34:37 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 11:36:51 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
 	char *s2;
 

@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/11 11:02:07 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 11:32:02 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int		get_command(t_env *e)
 	tmp = NULL;
 	prompt(e);
 	set_input_mode();
-//	e->line = read_it();
 	ft_gnl(0, &e->line);
 	reset_input_mode();
 	if (ft_issp(e->line) == 0)
@@ -118,111 +117,3 @@ int		main(int argc, char *argv[], char **envp)
 		ft_strdel(&e.last_cwd);
 	return (0);
 }
-/*
-void	redirection(t_env *e)
-{
-	int		n;
-	int		file;
-	char	c[1];
-
-	if (ft_strncmp(str, ">", 1) == 0)
-	{
-		file = open(path, O_RDONLY | O_WRONLY | O_TRUNC);
-		write(file,input,ft_strlen(input) + 1);
-		close(file);
-		return 0;
-	}
-	if (ft_strncmp(str, ">>", 2) == 0) //needs a condition for NFS file systems 
-	{
-		file = open(path, O_RDONLY | O_WRONLY | O_APPEND);
-		write(file,input,ft_strlen(input) + 1);   
-		close(file);
-		return 0;
-	}
-	if (ft_strncmp(str, "<", 1) == 0) // input redirected from a file in this manner
-	{
-		file = open(path, O_RDONLY);
-		while(read(file, c, 1) > 0);
-			write(1, c, 1);
-		write(1, "\n", 1);
-	}
-}
-
-char	*read_it(void)
-{
-	static size_t	pos = 4;
-	static ssize_t	eob = 4;
-	static char		buff[4];
-	char			*temp_line;
-	int				i;
-
-	i = 0;
-	temp_line = ft_strnew(1);
-	ft_bzero(buff, 4);
-	while (buff[pos] != '\n' && eob > 0)
-	{
-		if ((ssize_t)pos == eob)
-			if (((pos = 0) == 0) &&
-								((eob = read(0, buff, 4)) == -1))
-				return (NULL);
-		if ((temp_line = sjoin(buff, &pos, eob, temp_line)) == NULL)
-			return (NULL);
-	//	ft_printf("|%c|\n", temp_line[i]);
-		line_eddition(temp_line, i);
-	//	if (ft_isprint(temp_line[i]))
-	//		ft_putchar(temp_line[i]);
-		i++;
-	}
-//	ft_putstr("\n");
-	return (temp_line);
-}
-
-void	pipe_loop(t_env *e)
-{
-	t_split_string	args;
-	char			*tmp;
-	int				i;
-
-	i = 0;
-	tmp = ;
-	args = ft_nstrsplit(tmp, "|");
-	ft_strdel(&tmp);
-	e->pipes = ft_tabdup(args.strings, args.words);
-	e->n_pipes = args.words;
-	ft_free_tab(&args.strings, args.words);
-	while (i < n_pipes)
-	{
-		ft_pipes(e);
-		i++;
-	}
-}
-
-int		ft_pipes(t_env *e)
-{
-	int		fd[2];
-	int		nbytes;
-	pid_t	child_pid;
-	char	readbuffer[80];
-
-	pipe(fd);
-	if((child_pid = fork()) < 0)
-	{
-		ft_putstr(C_RED"ERROR: Fork"C_RESET);
-		return(0);
-	}
-	if(child_pid == 0)
-	{
-		close(fd[0]);
-		write(fd[1], input[0], ft_strlen(input[0]) + 1);
-		exit(0);
-//		return (1);
-	}
-	else
-	{
-		close(fd[1]);
-		nbytes = read(fd[0], readbuffer, sizeof(readbuffer));
-	}
-	return(1);
-}
-*/
-

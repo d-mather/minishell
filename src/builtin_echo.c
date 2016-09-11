@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/10 17:38:25 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/11 10:33:50 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 11:32:54 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		ft_echo(t_env *e)
 							(e->input[1][0] == '\"' && e->input[1][1] == '$'))
 	{
 		tmp = ft_trim_qu(ft_strchr(e->input[1], '$'));
-		env = ft_getenv(tmp + 1,e->environ);
+		env = ft_getenv(tmp + 1, e->environ);
 		if (ft_strcmp(env, ft_strchr(e->input[1], '$')) == 0)
 			ft_putstr(C_RED"Invalid environment."C_RESET);
 		else
@@ -95,7 +95,7 @@ int		parenthesis_management(void)
 	int				word;
 
 	word = 0;
-	pm.p_m_lines = (char **)ft_memalloc(sizeof (char *) * 100);
+	pm.p_m_lines = (char **)ft_memalloc(sizeof(char *) * 100);
 	ft_putstr("*>");
 	set_input_mode();
 	ft_gnl(0, &pm.p_m_lines[word]);

@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/08 16:54:21 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/11 11:10:19 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 11:33:16 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct		s_term
 int					run_commands(t_env *e);
 int					get_input(t_env *e);
 int					get_command(t_env *e);
-//char				*read_it(void);
 void				save_env(char **envp, t_env *e);
 
 /*
