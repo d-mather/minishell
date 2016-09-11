@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/05 15:01:39 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/11 10:36:29 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 11:02:07 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int		main(int argc, char *argv[], char **envp)
 	t_env	e;
 
 	e.environ = NULL;
+	e.last_cwd = ft_strnew(24);
 	if (argc > 1 && argv[1])
 		ft_putstr(C_RED"No arguments handled yet\n"C_RESET);
 	save_env(envp, &e);
@@ -113,6 +114,8 @@ int		main(int argc, char *argv[], char **envp)
 		ft_free_tab(&e.cmds, e.n_cmds);
 	}
 	ft_free_tab(&e.environ, e.ie);
+	if (e.last_cwd != NULL)
+		ft_strdel(&e.last_cwd);
 	return (0);
 }
 /*

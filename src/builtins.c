@@ -6,7 +6,7 @@
 /*   By: dmather <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/18 16:03:29 by dmather           #+#    #+#             */
-/*   Updated: 2016/09/10 17:40:54 by dmather          ###   ########.fr       */
+/*   Updated: 2016/09/11 10:59:32 by dmather          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		ft_cd(t_env *e)
 		i = chdir(ft_getenv("HOME", e->environ));
 	else if (e->input[1][0] == '/')
 		i = chdir(e->input[1]);
+	else if (e->input[1][0] == '-')
+		i = chdir(e->last_cwd);
 	else if (e->input[1][0] == '~')
 		i = more_cd(e, i);
 	else if (e->input[1][0] != '/')
@@ -34,6 +36,11 @@ int		ft_cd(t_env *e)
 		cwd = ft_nstrjoin(tmp, "/", e->input[1]);
 		ft_strdel(&tmp);
 		i = chdir(cwd);
+		if (i == 0)
+		{
+			ft_strdel(&e->last_cwd);
+			e->last_cwd = ft_strdup(cwd);
+		}
 		ft_strdel(&cwd);
 	}
 	if (i != 0)
@@ -47,12 +54,24 @@ int		more_cd(t_env *e, int i)
 
 	path = NULL;
 	if (!ft_strcmp(e->input[1], "~"))
+	{
 		i = chdir(ft_getenv("HOME", e->environ));
+		if (i == 0)
+		{
+			ft_strdel(&e->last_cwd);
+			e->last_cwd = ft_strdup(ft_getenv("HOME", e->environ));
+		}
+	}
 	else
 	{
 		path = ft_strchr(e->input[1], '/');
 		path = ft_strjoin(ft_getenv("HOME", e->environ), path);
 		i = chdir(path);
+		if (i == 0)
+		{
+			ft_strdel(&e->last_cwd);
+			e->last_cwd = ft_strdup(path);
+		}
 		ft_strdel(&path);
 	}
 	return (i);
