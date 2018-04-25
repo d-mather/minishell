@@ -1,8 +1,7 @@
 # 42sh
-##Own mini Shell. 
-###Usage:
+## My own mini Shell. 
+### Usage:
 - 'make' to compile,
-- 'make re' to recompile everything including libft,
-- 'make run' to recompile only the project,
-- 'make clean' to remove 42sh executable,
-- 'make fclean' to remove executable, all object files (.o), and static libft library.
+- 'make re' to recompile everything including the library (libft),
+- 'make clean' to remove the executable (42sh),
+- 'make fclean' to remove the executable, all object files (.o), and static libft library.
