@@ -97,7 +97,7 @@ int		parenthesis_management(void)
 	word = 0;
 	pm.p_m_lines = (char **)ft_memalloc(sizeof(char *) * 100);
 	ft_putstr("*>");
-	set_input_mode();
+	//set_input_mode();
 	ft_gnl(0, &pm.p_m_lines[word]);
 	if (!pm.p_m_lines[word])
 		pm.p_m_lines[word] = "\n";
@@ -112,7 +112,7 @@ int		parenthesis_management(void)
 		if (!pm.p_m_lines[word])
 			pm.p_m_lines[word] = "\n";
 	}
-	reset_input_mode();
+	//reset_input_mode();
 	print_paren_man(&pm, word);
 	ft_free_tab(&pm.p_m_lines, word + 1);
 	return (CONT);

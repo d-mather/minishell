@@ -16,7 +16,7 @@ CR			= \033[31m
 CB			= \033[34m
 CP			= \033[38;5;128m
 CY			= \033[33m
-FLAGS		= -Wall -Wextra -Werror -ltermcap -g3
+FLAGS		= -Wall -Wextra -Werror# -ltermcap -g3
 LIBFT		= -L libft -lft
 INCLUDES	= -I include -I libft
 
@@ -25,8 +25,8 @@ SRCS		=	src/ft_sh.c			\
 				src/ft_getenv.c		\
 				src/builtins.c		\
 				src/builtin_echo.c	\
-				src/small.c			\
-				src/terms.c			\
+				src/small.c
+				#src/terms.c			\
 
 all: $(NAME)
 

@@ -70,9 +70,9 @@ int		get_command(t_env *e)
 
 	tmp = NULL;
 	prompt(e);
-	set_input_mode();
+	//set_input_mode();
 	ft_gnl(0, &e->line);
-	reset_input_mode();
+	//reset_input_mode();
 	if (ft_issp(e->line) == 0)
 	{
 		ft_strdel(&e->line);

@@ -18,7 +18,7 @@
 # define CONT 1
 # define UNSETENV_FIND (ft_strncmp(e->environ[i], e->name, ft_strlen(e->name)))
 
-struct termios	saved_attributes;
+//struct termios	saved_attributes;
 
 typedef struct		s_env
 {
@@ -44,12 +44,12 @@ typedef struct		s_paren_manage
 {
 	char			**p_m_lines;
 }					t_paren_manage;
-
+/*
 typedef struct		s_term
 {
 	char			*term_buffer;
 }					t_term;
-
+*/
 /*
 ** ft_sh.c
 */
@@ -104,8 +104,8 @@ int					ft_issp(char *o);
 
 /*
 ** terms.c
-*/
+*//*
 void				reset_input_mode(void);
 void				set_input_mode(void);
-
+*/
 #endif

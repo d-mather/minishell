@@ -37,8 +37,9 @@ SRC_NAME = ft_atoi.c ft_bzero.c ft_ctostr.c ft_isalnum.c \
 			ft_printf/ft_printf.c ft_printf/ft_process.c \
 			ft_printf/ft_utils.c ft_printf/ft_add_args.c \
 			ft_atoi_hex.c ft_float_swap.c ft_memswap.c ft_nstrsplit.c \
-			ft_sprintf.c ft_strtoupper.c ft_isint.c ft_tabdup.c \
+			ft_strtoupper.c ft_isint.c ft_tabdup.c \
 			ft_tablen.c ft_nstrjoin.c ft_free_tab.c ft_realloc.c \
+			#ft_sprintf.c
 
 OBJS = ft_atoi.o ft_bzero.o ft_ctostr.o ft_isalnum.o \
 			ft_isalpha.o ft_isascii.o ft_isdigit.o ft_islower.o \
@@ -59,9 +60,10 @@ OBJS = ft_atoi.o ft_bzero.o ft_ctostr.o ft_isalnum.o \
 			ft_strsub.o ft_strtrim.o ft_trim_qu.o ft_tolower.o \
 			ft_toupper.o ft_uitoa_base.o ft_uitoa.o ft_gnl.o ft_tabstrstr.o\
 			ft_atoi_hex.o ft_float_swap.o ft_memswap.o ft_nstrsplit.o \
-			ft_sprintf.o ft_strtoupper.o ft_nstrjoin.o \
+			ft_strtoupper.o ft_nstrjoin.o \
 			ft_printf.o ft_process.o ft_free_tab.o ft_realloc.o \
 			ft_utils.o ft_add_args.o ft_isint.o ft_tabdup.o ft_tablen.o \
+			#ft_sprintf.o
 
 AR = ar rc
 

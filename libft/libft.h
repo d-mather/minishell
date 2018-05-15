@@ -13,9 +13,9 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <termcap.h>
-# include <term.h>
-# include <curses.h>
+//# include <termcap.h>
+//# include <term.h>
+//# include <curses.h>
 # include <sys/wait.h>
 # include <sys/types.h>
 # include <string.h>
@@ -143,7 +143,7 @@ void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 void				*ft_realloc(void *ptr, size_t size);
-int					ft_sprintf(char **str, const char *format, ...);
+//int					ft_sprintf(char **str, const char *format, ...);
 char				*ft_strcat(char *dest, const char *src);
 char				*ft_strchr(const char *s, int c);
 void				ft_strclr(char *s);
